@@ -8,13 +8,25 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: BaseViewController,HomeViewDelegate {
 
+    let home = HomeView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        home.getHomeView(vc: self)
+        home.delegate = self
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
+    // Home Delegates 
+    func didPressedListButton() -> Void {
+        let listVC = StoreyBoard().getListViewController()
+        self.push(VC: listVC)
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
